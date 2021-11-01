@@ -32,7 +32,7 @@ chkrootkit -q
 dpkg -l | grep -i game
 
 ## lock root user
-passwd -l root
+sudo passwd -l root
 
 ## disable guest
 echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
