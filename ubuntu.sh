@@ -43,7 +43,7 @@ sudo /home -name '*.jpeg' -type f -delete
 
 sysctl -n net.ipv4.tcp_syncookies
 echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
-echo "nospoof on" | sudo tee -a /etc/host.conf
+
 
 ## change all user passwords
 PASS='K!rkL@nd2587'
@@ -51,7 +51,7 @@ cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
 sed -i '/root/ d' users
 for x in `cat users`
 do
-      echo -e "$PASS\n$PASS" | passwd $x
+      echo -e "$PASS\n$PASS" | sudo passwd $x
       chage -M 90 -m 7 -W 15 $x
       echo -e "$x's password has been changed"
 done
