@@ -3,8 +3,7 @@
 ## daily update
 sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
 sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
-## Security updates
-echo "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted" | sudo tee -a /etc/apt/sources.list
+
 
 sudo apt update
 bash -c "$(curl -sL https://github.com/ilikenwf/apt-fast/raw/master/quick-install.sh)"
@@ -20,23 +19,21 @@ sudo ufw logging on
 
 
 ## disable guest
-echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
+echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf
 
 
 # password security
 sudo sed 's/pam_cracklib.so/pam_cracklib.so ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 /g' /etc/pam.d/common-password
 sudo sed 's/pam_unix.so/pam_unix.so remember=5 minlen=8 /g' /etc/pam.d/common-password
-echo 'auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800' >> /etc/pam.d/common-auth
+echo 'auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800' | sudo tee -a /etc/pam.d/common-auth
 
 # remove "hacking tools" 
 sudo apt remove -y john hydra wireshark nginx snmp xinetd
 
 ##av scans
-freshclam --stdout
-clamscan -r -i --stdout --exclude-dir="^/sys" /
-rkhunter -c --sk
-lynis -c --quick
-chkrootkit -q
+sudo rkhunter -c --sk
+sudo lynis --quick
+sudo chkrootkit -q
 
 #removes leftover images
 sudo find /home -name '*.gif' -type f -delete
