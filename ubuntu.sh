@@ -23,6 +23,7 @@ echo 'auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800' >> /etc/pa
 sudo apt remove -y john hydra wireshark
 
 ##av scans
+clamscan
 rkhunter -c --sk
 lynis -c --quick
 chkrootkit -q
