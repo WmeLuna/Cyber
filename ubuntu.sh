@@ -7,7 +7,7 @@ sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic
 cat /etc/apt/sources.list | grep "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted"
 if [ $? -eq 1 ]
 then
-	echo "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted" >> /etc/apt/sources.list
+	echo "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted" | sudo tee -a /etc/apt/sources.list
 fi
 
 sudo apt update
