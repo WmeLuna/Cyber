@@ -4,11 +4,7 @@
 sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
 sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
 ## Security updates
-cat /etc/apt/sources.list | grep "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted"
-if [ $? -eq 1 ]
-then
-	echo "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted" | sudo tee -a /etc/apt/sources.list
-fi
+echo "deb http://security.ubuntu.com/ubuntu/ focal-security universe main multiverse restricted" | sudo tee -a /etc/apt/sources.list
 
 sudo apt update
 bash -c "$(curl -sL https://github.com/ilikenwf/apt-fast/raw/master/quick-install.sh)"
