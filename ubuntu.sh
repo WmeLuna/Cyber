@@ -34,15 +34,27 @@ echo 'auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800' | sudo tee
 sudo apt remove -y john hydra wireshark nginx snmp xinetd
 
 ##av scans
-sudo rkhunter -c --sk
-sudo lynis --quick
-sudo chkrootkit -q
+sudo rkhunter -c --sk &
+sudo lynis --quick &
+sudo chkrootkit -q &
+wait # waits for the above to finish as the & has it run in the background and continue
 
 #removes leftover images
-sudo find /home -name '*.gif' -type f -delete
-sudo find /home -name '*.png' -type f -delete
-sudo find /home -name '*.jpg' -type f -delete
-sudo /home -name '*.jpeg' -type f -delete
+sudo find / -name '*.mp3' -type f -delete &
+sudo find / -name '*.mov' -type f -delete &
+sudo find / -name '*.mp4' -type f -delete &
+sudo find / -name '*.avi' -type f -delete &
+sudo find / -name '*.mpg' -type f -delete &
+sudo find / -name '*.mpeg' -type f -delete &
+sudo find / -name '*.flac' -type f -delete &
+sudo find / -name '*.m4a' -type f -delete &
+sudo find / -name '*.flv' -type f -delete &
+sudo find / -name '*.ogg' -type f -delete &
+sudo find /home -name '*.gif' -type f -delete &
+sudo find /home -name '*.png' -type f -delete &
+sudo find /home -name '*.jpg' -type f -delete &
+sudo find /home -name '*.jpeg' -type f -delete &
+wait 
 
 sysctl -n net.ipv4.tcp_syncookies
 echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
@@ -101,7 +113,8 @@ echo " "
 echo "Listing all human users"
 cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
-
+echo " "
+echo "
 
 if [ -f /var/run/reboot-required ]; then
         echo "A reboot is required please reboot asap"
