@@ -59,7 +59,7 @@ sudo chkrootkit -q &
 wait # waits for the above to finish as the & has it run in the background and continue
 
 #removes leftover images
-sudo find / -name '*.mp3' -type f -delete &
+#sudo find / -name '*.mp3' -type f -delete &
 sudo find / -name '*.mov' -type f -delete &
 sudo find / -name '*.mp4' -type f -delete &
 sudo find / -name '*.avi' -type f -delete &
