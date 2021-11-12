@@ -60,15 +60,15 @@ wait # waits for the above to finish as the & has it run in the background and c
 
 #removes leftover images
 #sudo find / -name '*.mp3' -type f -delete &
-sudo find / -name '*.mov' -type f -delete &
-sudo find / -name '*.mp4' -type f -delete &
-sudo find / -name '*.avi' -type f -delete &
-sudo find / -name '*.mpg' -type f -delete &
-sudo find / -name '*.mpeg' -type f -delete &
-sudo find / -name '*.flac' -type f -delete &
-sudo find / -name '*.m4a' -type f -delete &
-sudo find / -name '*.flv' -type f -delete &
-sudo find / -name '*.ogg' -type f -delete &
+#sudo find / -name '*.mov' -type f -delete &
+#sudo find / -name '*.mp4' -type f -delete &
+#sudo find / -name '*.avi' -type f -delete &
+#sudo find / -name '*.mpg' -type f -delete &
+#sudo find / -name '*.mpeg' -type f -delete &
+#sudo find / -name '*.flac' -type f -delete &
+#sudo find / -name '*.m4a' -type f -delete &
+#sudo find / -name '*.flv' -type f -delete &
+#sudo find / -name '*.ogg' -type f -delete &
 sudo find /home -name '*.gif' -type f -delete &
 sudo find /home -name '*.png' -type f -delete &
 sudo find /home -name '*.jpg' -type f -delete &
