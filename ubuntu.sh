@@ -133,7 +133,6 @@ echo "Listing all human users"
 cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
 echo " "
-echo "
 
 if [ -f /var/run/reboot-required ]; then
         echo "A reboot is required please reboot asap"
