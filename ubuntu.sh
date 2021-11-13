@@ -24,6 +24,9 @@ sudo ufw logging on
 echo 'Disabling unneeded services...'
 systemctl disable cups.service cups ssh xinetd avahi-daemon isc-dhcp-server6 slapd nfs-server rcpbind bind9 vsftd dovecot smbd squid snmpd rsync rsh nis samba snmp talk ntalk ftp > /dev/null
 
+#remove games
+rm -r /usr/games* > /dev/null
+rm -r /usr/local/games* > /dev/null
 
 ## disable guest
 echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf
