@@ -4,9 +4,10 @@ echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatrio
 echo "Any Use of this script that is not this team is NOT allowed!"
 
 ## daily update
-sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
-sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
-
+#sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
+#sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
+echo "Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily"
+sudo software-properties-gtk
 
 sudo apt update
 bash -c "$(curl -sL https://github.com/ilikenwf/apt-fast/raw/master/quick-install.sh)"
@@ -19,6 +20,9 @@ sudo apt-fast upgrade -y
 sudo ufw enable
 sudo ufw logging on
 
+#disabling services
+echo 'Disabling unneeded services...'
+systemctl disable cups.service cups ssh xinetd avahi-daemon isc-dhcp-server6 slapd nfs-server rcpbind bind9 vsftd dovecot smbd squid snmpd rsync rsh nis samba snmp talk ntalk ftp > /dev/null
 
 
 ## disable guest
@@ -26,12 +30,9 @@ echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf
 
 
 # password security
-sudo sed 's/pam_cracklib.so/pam_cracklib.so ucredit=-1 lcredit=-1 dcredit=-1 ocredit=-1 /g' /etc/pam.d/common-password
-sudo sed 's/pam_unix.so/pam_unix.so remember=5 minlen=8 /g' /etc/pam.d/common-password
-echo 'auth required pam_tally2.so deny=5 onerr=fail unlock_time=1800' | sudo tee -a /etc/pam.d/common-auth
-sed -i '/^PASS_MAX_DAYS\s*[0-9]+/s/[0-9]+/90/' /etc/login.defs
-sed -i '/^PASS_MIN_DAYS\s*[0-9]+/s/[0-9]+/10/' /etc/login.defs
-sed -i '/^PASS_WARN_AGE\s*[0-9]+/s/[0-9]+/7/' /etc/login.defs
+sed -i "s/PASS_MAX_DAYS	99999/PASS_MAX_DAYS 90/" /etc/login.defs
+sed -i "s/PASS_MIN_DAYS	0/PASS_MIN_DAYS 7/" /etc/login.defs
+sed -i "s/PASS_WARN_AGE	7/PASS_WARN_AGE 14/" /etc/login.defs
 
 # firewall
 iptables -F
