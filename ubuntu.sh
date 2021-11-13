@@ -6,7 +6,7 @@ echo "Any Use of this script that is not this team is NOT allowed!"
 ## daily update
 #sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
 #sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
-echo "Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily"
+echo -e "\033[1;35m Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily"
 sudo software-properties-gtk
 
 sudo apt update
@@ -21,7 +21,7 @@ sudo ufw enable
 sudo ufw logging on
 
 #disabling services
-echo 'Disabling unneeded services...'
+echo -e "\033[1;35mDisabling unneeded services..."
 systemctl disable cups.service cups ssh xinetd avahi-daemon isc-dhcp-server6 slapd nfs-server rcpbind bind9 vsftd dovecot smbd squid snmpd rsync rsh nis samba snmp talk ntalk ftp > /dev/null
 
 #remove games
@@ -84,15 +84,15 @@ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 
 ## change all user passwords
-PASS='K!rkL@nd2587'
-cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
-sed -i '/root/ d' users
-for x in `cat users`
-do
-      echo -e "$PASS\n$PASS" | sudo passwd $x
-      chage -M 90 -m 7 -W 15 $x
-      echo -e "$x's password has been changed"
-done
+#PASS='K!rkL@nd2587'
+#cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
+#sed -i '/root/ d' users
+#for x in `cat users`
+#do
+#      echo -e "$PASS\n$PASS" | sudo passwd $x
+#      chage -M 90 -m 7 -W 15 $x
+#      echo -e "$x's password has been changed"
+#done
 
 ## lock root user
 sudo passwd -l root
@@ -123,21 +123,21 @@ done
 
 clear
 
-echo "Start printing text that may be useful to get more points"
+echo -e "\033[1;35m Start printing text that may be useful to get more points"
 ## list games ##
-echo "List games"
+echo -e "\033[1;35m List games"
 dpkg -l | grep -i game
 
 echo " "
-echo "List files in all home dirs"
+echo -e "\033[1;35m List files in all home dirs"
 ls /home/*/*
 
 echo " "
-echo "Listing all human users"
+echo -e "\033[1;35m Listing all human users"
 cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
 echo " "
 
 if [ -f /var/run/reboot-required ]; then
-        echo "A reboot is required please reboot asap"
+        echo -e "\033[1;35m A reboot is required please reboot asap"
 fi
