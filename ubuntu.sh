@@ -96,8 +96,9 @@ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 ## lock root user
 sudo passwd -l root
+PASS='K!rkL@nd2587'
 clear
-##delete users
+##delete users make admin and change pass
 for x in `cat users`
 do
     read -p "Delete user $x?[y/n]: " ansdel
@@ -116,6 +117,14 @@ do
                 sudo deluser $x adm
                 sudo deluser $x sudo
           fi
+          
+          #change pass
+          if [ $USER !=  $x ];
+          then
+                echo -e "$PASS\n$PASS" | sudo passwd $x
+                chage -M 90 -m 7 -W 15 $x
+                echo -e "Changed password of $x"
+          fi
     fi
 done
 
@@ -123,21 +132,21 @@ done
 
 clear
 
-echo -e "\033[1;35m Start printing text that may be useful to get more points"
+echo -e "\033[1;35m Start printing text that may be useful to get more points\033[0m"
 ## list games ##
-echo -e "\033[1;35m List games"
+echo -e "\033[1;35m List games\033[0m"
 dpkg -l | grep -i game
 
 echo " "
-echo -e "\033[1;35m List files in all home dirs"
+echo -e "\033[1;35m List files in all home dirs\033[0m"
 ls /home/*/*
 
 echo " "
-echo -e "\033[1;35m Listing all human users"
+echo -e "\033[1;35m Listing all human users\033[0m"
 cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
 echo " "
 
 if [ -f /var/run/reboot-required ]; then
-        echo -e "\033[1;35m A reboot is required please reboot asap"
+        echo -e "\033[1;35m A reboot is required please reboot asap\033[0m"
 fi
