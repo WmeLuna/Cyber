@@ -23,6 +23,9 @@ sudo apt-fast upgrade -y
 sudo ufw enable
 sudo ufw logging on
 
+#set it back to default mirror
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
+
 #disabling services
 echo -e "\033[1;35mDisabling unneeded services...\033[0m"
 systemctl disable cups.service cups ssh xinetd avahi-daemon isc-dhcp-server6 slapd nfs-server rcpbind bind9 vsftd dovecot smbd squid snmpd rsync rsh nis samba snmp talk ntalk ftp > /dev/null
