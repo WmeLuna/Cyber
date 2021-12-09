@@ -97,6 +97,8 @@ echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 ## lock root user
 sudo passwd -l root
+sudo usermod -s /usr/sbin/nologin root
+
 PASS='K!rkL@nd2587'
 clear
 ##delete users make admin and change pass
