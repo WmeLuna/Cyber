@@ -122,7 +122,8 @@ do
           fi
           
           #change pass
-          if [ $USER !=  $x ];
+          read -p "Change user's $x password (do not change $USER's password)?[y/n]: " anspass
+          if [ $anspass = y ];
           then
                 echo -e "$PASS\n$PASS" | sudo passwd $x
                 chage -M 90 -m 7 -W 15 $x
