@@ -8,8 +8,8 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2
 #sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
 #sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
-echo -e "\033[1;35m Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily\033[0m"
-sudo software-properties-gtk
+#echo -e "\033[1;35m Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily\033[0m"
+#sudo software-properties-gtk
 
 sudo apt update
 bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
