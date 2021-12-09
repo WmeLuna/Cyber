@@ -7,7 +7,8 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2
 ## daily update
 #sudo sed -i -e 's/APT::Periodic::Update-Package-Lists.*\+/APT::Periodic::Update-Package-Lists "1";/' /etc/apt/apt.conf.d/10periodic
 #sudo sed -i -e 's/APT::Periodic::Download-Upgradeable-Packages.*\+/APT::Periodic::Download-Upgradeable-Packages "0";/' /etc/apt/apt.conf.d/10periodic
-echo -e "\033[1;35m Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily"
+sudo bash -c "curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
+echo -e "\033[1;35m Opening Software & Updates, in the Updates tab change \"Subscribed to: \" to All Updates and \"Automatically check for updates\" to daily\033[0m"
 sudo software-properties-gtk
 
 sudo apt update
@@ -22,7 +23,7 @@ sudo ufw enable
 sudo ufw logging on
 
 #disabling services
-echo -e "\033[1;35mDisabling unneeded services..."
+echo -e "\033[1;35mDisabling unneeded services...\033[0m"
 systemctl disable cups.service cups ssh xinetd avahi-daemon isc-dhcp-server6 slapd nfs-server rcpbind bind9 vsftd dovecot smbd squid snmpd rsync rsh nis samba snmp talk ntalk ftp > /dev/null
 
 #remove games
