@@ -11,8 +11,7 @@ ansible-galaxy install -p roles -r /etc/ansible/requirements.yml
 
 cat > /etc/ansible/harden.yml << EOF
 - name: Harden Server
-  hosts: localhost
-  connection: local
+  hosts: servers
   become: yes
   roles:
     - ubuntu1804_cis
