@@ -105,6 +105,8 @@ sudo passwd -l root
 sudo usermod -s /usr/sbin/nologin root
 
 PASS='K!rkL@nd2587'
+cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
+sed -i '/root/ d' users
 clear
 ##delete users make admin and change pass
 for x in `cat users`
