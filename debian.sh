@@ -82,7 +82,7 @@ sudo find /home -name '*.jpg' -type f -delete &
 sudo find /home -name '*.jpeg' -type f -delete &
 wait
 
-sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
+sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd > /dev/null 2>&1 
 
 sudo passwd -l root > /dev/null 2>&1 
 sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1 
