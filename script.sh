@@ -67,8 +67,8 @@ wait
 
 sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
 
-sudo passwd -l root
-sudo usermod -s /usr/sbin/nologin root
+sudo passwd -l root > /dev/null 2>&1 
+sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1 
 
 sudo rkhunter -c --sk > /dev/null 2>&1 
 sudo chkrootkit -q > /dev/null 2>&1 
