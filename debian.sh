@@ -2,6 +2,7 @@
 echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatriot team 14-4293"
 echo "Any Use of this script that is not this team is NOT allowed!"
 sudo gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2>&1 #darkmde bc i like my eyes
+echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER # disable sudo prompt during the comp
 
 sudo apt update 
 sudo apt install -y curl
