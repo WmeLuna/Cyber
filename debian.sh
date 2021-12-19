@@ -29,7 +29,7 @@ echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 
 DEBIAN_FRONTEND=noninteractive sudo apt-fast install -y software-properties-common ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 DEBIAN_FRONTEND=noninteractive sudo apt-fast upgrade -y 
-sudo apt autoremove
+sudo apt autoremove -y
 
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" >> /etc/apt/sources.list'
