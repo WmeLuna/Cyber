@@ -1,4 +1,5 @@
 #!/bin/bash
+#old use script.sh
 
 echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatriot team 14-4293"
 echo "Any Use of this script that is not this team is NOT allowed!"
