@@ -117,7 +117,7 @@ do
           fi
           
           #change pass
-          read -p "Change user's $x password (do not change current user's password)?[y/n]: " anspass
+          read -p "Change user's $x password (do not change $USER's password)?[y/n]: " anspass
           if [ $anspass = y ];
           then
                 echo -e "$PASS\n$PASS" | sudo passwd $x
