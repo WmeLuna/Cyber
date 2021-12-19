@@ -70,6 +70,7 @@ sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
 sudo passwd -l root > /dev/null 2>&1 
 sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1 
 
+sudo rm -rf /var/log/lynis.log > /dev/null 2>&1 
 sudo rkhunter -c --sk > /dev/null 2>&1 
 sudo chkrootkit -q > /dev/null 2>&1 
 sudo lynis -q --quick > /dev/null 2>&1 
