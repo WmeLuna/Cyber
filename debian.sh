@@ -84,12 +84,12 @@ wait
 
 sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
 
+sudo passwd -l root
+sudo usermod -s /usr/sbin/nologin root
+
 sudo rkhunter -c --sk 
 sudo chkrootkit -q 
 sudo lynis -q --quick
-
-sudo passwd -l root
-sudo usermod -s /usr/sbin/nologin root
 
 PASS='K!rkL@nd2587'
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
