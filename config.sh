@@ -4,6 +4,19 @@ curl -sL https://github.com/WmeLuna/Cyber/raw/main/conf/limits.conf > /etc/secur
 curl -sL https://github.com/WmeLuna/Cyber/raw/main/conf/login.defs > /etc/login.defs
 curl -sL https://github.com/WmeLuna/Cyber/raw/main/conf/sysctl.conf > /etc/sysctl.conf
 
+
+echo "ENABLED=true" > /etc/default/sysstat
+systemctl enable sysstat &> /dev/null
+systemctl start sysstat > /dev/null
+
+/etc/init.d/acct start > /dev/null
+
+echo "WARNING: UNAUTHORIZED ACCESS IS FORBIDDEN. PENAL LAWS WILL BE ENFORCED BY OWNER." > /etc/issue.net
+echo "WARNING: UNAUTHORIZED ACCESS IS FORBIDDEN. PENAL LAWS WILL BE ENFORCED BY OWNER." > /etc/issue
+echo "install dccp /bin/true" > /etc/modprobe.d/dccp.conf
+echo "install rds /bin/true" > /etc/modprobe.d/rds.conf
+echo "install tipc /bin/true" > /etc/modprobe.d/tipc.conf
+
 apt-get -y purge gnome-games > /dev/null
 
 rm -rf /usr/games > /dev/null
