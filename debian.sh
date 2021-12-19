@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatriot team 14-4293"
 echo "Any Use of this script that is not this team is NOT allowed!"
 sudo gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2>&1 #darkmde bc i like my eyes
@@ -27,9 +28,9 @@ echo "DOWNLOADBEFORE=true" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXNUM=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 
-DEBIAN_FRONTEND=noninteractive sudo apt-fast install -y software-properties-common sysstat acct auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
+sudo apt-fast install -y software-properties-common sysstat acct auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)"
-DEBIAN_FRONTEND=noninteractive sudo apt-fast upgrade -y 
+sudo apt-fast upgrade -y 
 sudo apt autoremove -y
 
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'

@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatriot team 14-4293"
 echo "Any Use of this script that is not this team is NOT allowed!"
 sudo gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2>&1 #darkmde bc i like my eyes
@@ -9,7 +10,7 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrackheader.enabled\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
 
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
+
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"
 sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
@@ -19,7 +20,10 @@ echo "_MAXNUM=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 
 sudo apt-fast install -y software-properties-common ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)"
 sudo gnome-terminal -- bash -c 'sudo apt-fast upgrade -y && sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"'
+sudo apt autoremove -y
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
 
 sudo ufw enable
 sudo ufw logging on
@@ -62,10 +66,9 @@ wait
 
 sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
 
-sudo rkhunter -c --sk &
-sudo lynis --quick &
-sudo chkrootkit -q &
-wait 
+sudo rkhunter -c --sk
+sudo chkrootkit -q
+sudo lynis -q --quick
 
 sudo passwd -l root
 sudo usermod -s /usr/sbin/nologin root
@@ -120,6 +123,8 @@ echo -e "\033[1;35m Listing all human users\033[0m"
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
 echo " "
+echo -e "\033[1;35m Listing actionable test ids from lynis (google them to see what commands to run to fix them) \033[0m" 
+sudo cat /var/log/lynis.log | grep Suggestion | grep -o "test:.*" | cut -f2- -d: | cut -d "]" -f1 |sed s:LYNIS:: | sort -u | grep "\S"
 
 if [ -f /var/run/reboot-required ]; then
         echo -e "\033[1;35m A reboot is required please reboot asap\033[0m"
