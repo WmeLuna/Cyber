@@ -11,7 +11,6 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.http
 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
 
-suo
 sudo bash -c "$(cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/10periodic > 10periodic)"
 sudo bash -c "$(cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/20auto-upgrades > 20auto-upgrades)"
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'
