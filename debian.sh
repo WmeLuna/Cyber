@@ -2,7 +2,7 @@
 echo "This is a script made by Allen Martinez (luna@wmeluna.com) for CyberPatriot team 14-4293"
 echo "Any Use of this script that is not this team is NOT allowed!"
 sudo gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2>&1 #darkmde bc i like my eyes
-echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER # disable sudo prompt during the comp
+echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER  > /dev/null 2>&1 # disable sudo prompt during the comp
 
 sudo apt update 
 sudo apt install -y curl
@@ -22,8 +22,8 @@ sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-
 
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"
-sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"  > /dev/null 2>&1 
+sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)" > /dev/null 2>&1 
 echo "_APTMGR=apt" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "DOWNLOADBEFORE=true" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXNUM=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
@@ -41,7 +41,7 @@ sudo bash -c 'echo -e "deb-src http://security.debian.org/debian-security $(lsb_
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)" > /dev/null 2>&1 
 
 sudo ufw enable
 sudo ufw logging on
@@ -49,7 +49,7 @@ sudo ufw logging on
 sudo rm -r /usr/games* > /dev/null
 sudo rm -r /usr/local/games* > /dev/null
 
-echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf
+echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null 2>&1 
 
 sudo iptables -F
 sudo iptables -P INPUT DROP
@@ -87,9 +87,9 @@ sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
 sudo passwd -l root
 sudo usermod -s /usr/sbin/nologin root
 
-sudo rkhunter -c --sk 
-sudo chkrootkit -q 
-sudo lynis -q --quick
+sudo rkhunter -c --sk  > /dev/null 2>&1 
+sudo chkrootkit -q  > /dev/null 2>&1 
+sudo lynis -q --quick > /dev/null 2>&1 
 
 PASS='K!rkL@nd2587'
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
