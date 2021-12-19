@@ -60,6 +60,13 @@ sudo find /home -name '*.jpg' -type f -delete &
 sudo find /home -name '*.jpeg' -type f -delete &
 wait
 
+sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd
+
+sudo rkhunter -c --sk &
+sudo lynis --quick &
+sudo chkrootkit -q &
+wait 
+
 sudo passwd -l root
 sudo usermod -s /usr/sbin/nologin root
 
