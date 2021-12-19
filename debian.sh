@@ -9,8 +9,6 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrackheader.enabled\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
 
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
-
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/10periodic > 10periodic"
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/20auto-upgrades > 20auto-upgrades"
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'
@@ -21,7 +19,6 @@ sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs)-upda
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
-
 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"
 sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
@@ -40,6 +37,8 @@ sudo bash -c 'echo -e "deb http://security.debian.org/debian-security $(lsb_rele
 sudo bash -c 'echo -e "deb-src http://security.debian.org/debian-security $(lsb_release -cs)/updates main contrib non-free" >> /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
+
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)"
 
 sudo ufw enable
 sudo ufw logging on
