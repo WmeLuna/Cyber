@@ -87,3 +87,6 @@ chmod 700 /etc/cron.hourly
 chmod 700 /etc/cron.monthly
 chmod 700 /etc/cron.weekly
 chmod 600 /etc/cups/cupsd.conf
+
+
+sudo service auditd restart
