@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get install tar 
 cd ~ && mkdir .themes 
 cd ~/.themes 
 curl -LOJ https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic.tar.xz
