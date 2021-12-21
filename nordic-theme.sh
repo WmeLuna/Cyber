@@ -22,3 +22,7 @@ gsettings set org.gnome.desktop.interface gtk-theme Nordic
 gsettings set org.gnome.desktop.wm.preferences theme Nordic
 gsettings set org.gnome.shell.extensions.user-theme name "Nordic"
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
+if [ "$(lsb_release -is)" = "Debian" ]; then 
+    echo "Ubuntu's Dock has beed added, will appear on reboot"
+fi
