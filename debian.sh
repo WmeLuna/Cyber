@@ -12,6 +12,7 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrac
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
 
+echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/10periodic > 10periodic"
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/20auto-upgrades > 20auto-upgrades"
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'
@@ -26,7 +27,7 @@ bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" 
 if [ "$(lsb_release -is)" = "Debian" ]; then echo -e "\033[1;35mUbuntu's Dock has beed added, will appear on reboot\033[0m"; fi
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 
-echo -e "\033[1;35mConfiguring Update Settings\033[0m"
+echo -e "\033[1;35mConfiguring Custom APT settings (makes downloads go faster) \033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"  > /dev/null 2>&1 
 sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)" > /dev/null 2>&1 
 echo "_APTMGR=apt" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1

@@ -12,7 +12,7 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrac
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
 
-
+echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
 
 echo -e "\033[1;35mCustomizing GNOME\033[0m"
