@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo add-apt-repository ppa:papirus/papirus -y
 sudo apt-get install -y tar gnome-shell gnome-shell-extensions gnome-tweaks
 
 cd ~ && mkdir .themes 
