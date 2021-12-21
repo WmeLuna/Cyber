@@ -43,7 +43,6 @@ sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > 
 
 echo -e "\033[1;35mUpgrading Packages\033[0m"
 sudo apt-fast upgrade -y 
-sudo apt autoremove -y
 
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" > /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs) main contrib non-free" >> /etc/apt/sources.list'
@@ -98,6 +97,7 @@ wait
 
 echo -e "\033[1;35mRemoving malicious software\033[0m"
 sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd > /dev/null 2>&1 
+sudo apt autoremove -y > /dev/null 2>&1 
 
 echo -e "\033[1;35mDisabling root logon\033[0m"
 sudo passwd -l root > /dev/null 2>&1 
