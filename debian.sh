@@ -24,7 +24,7 @@ sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-
 
 echo -e "\033[1;35mCustomizing GNOME\033[0m"
 bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
-if [ "$(lsb_release -is)" = "Debian" ]; then echo -e "\033[1;35mUbuntu's Dock has beed added, will appear on reboot\033[0m"; fi
+if [ "$(lsb_release -is)" = "Debian" ]; then echo -e "\033[1;35mUbuntu's Dock has beed added\033[0m"; fi
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 
 echo -e "\033[1;35mConfiguring Custom APT settings (makes downloads go faster) \033[0m"
