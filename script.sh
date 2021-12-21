@@ -27,6 +27,8 @@ echo "_MAXNUM=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 
 echo -e "\033[1;35mDownloading software\033[0m"
+echo "debconf debconf/priority select critical" | sudo debconf-set-selections
+echo "debconf debconf/frontend select Noninteractive" | sudo debconf-set-selections
 sudo apt-fast install -y software-properties-common sysstat acct auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > /dev/null 2>&1
 
