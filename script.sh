@@ -7,14 +7,14 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER > /dev/
 sudo apt update > /dev/null 2>&1
 sudo apt install -y curl> /dev/null 2>&1
 
-bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
-
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
+bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"browser.contentblocking.category\", strict);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrackheader.enabled\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
+bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
 
 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
+bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)" > /dev/null 2>&1 
 sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)" > /dev/null 2>&1 
 echo "_APTMGR=apt" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1

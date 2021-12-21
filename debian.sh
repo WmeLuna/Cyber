@@ -7,11 +7,10 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER  > /dev
 sudo apt update > /dev/null 2>&1
 sudo apt install -y curl> /dev/null 2>&1
 
-bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
-
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
+bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"browser.contentblocking.category\", strict);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrackheader.enabled\", true);' >> user.js"
 bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
+bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
 
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/10periodic > 10periodic"
 sudo bash -c "cd /etc/apt/apt.conf.d/ && curl -sL https://github.com/WmeLuna/Cyber/raw/main/20auto-upgrades > 20auto-upgrades"
@@ -21,6 +20,8 @@ sudo bash -c 'echo -e "deb http://security.debian.org/debian-security $(lsb_rele
 sudo bash -c 'echo -e "deb-src http://security.debian.org/debian-security $(lsb_release -cs)/updates main contrib non-free" >> /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
+
+bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
 
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 
