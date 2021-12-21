@@ -14,24 +14,33 @@ bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_
 
 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
+
+echo -e "\033[1;35mCustomizing GNOME\033[0m"
 bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)" > /dev/null 2>&1 
+
+echo -e "\033[1;35mConfiguring Update Settings\033[0m"
+sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"  > /dev/null 2>&1 
 sudo bash -c "$(curl -sL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)" > /dev/null 2>&1 
 echo "_APTMGR=apt" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "DOWNLOADBEFORE=true" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXNUM=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 
+echo -e "\033[1;35mDownloading software\033[0m"
 sudo apt-fast install -y software-properties-common sysstat acct auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > /dev/null 2>&1
+
+echo -e "\033[1;35mUpgrading Packages\033[0m"
 sudo apt-fast upgrade -y 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1
 sudo apt autoremove -y
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)" > /dev/null 2>&1 
 
+echo -e "\033[1;35mTurning on firewall\033[0m" 
 sudo ufw enable
 sudo ufw logging on
 
+echo -e "\033[1;35mRemoving items in default game directorys\033[0m"
 sudo rm -r /usr/games* > /dev/null
 sudo rm -r /usr/local/games* > /dev/null
 
@@ -51,7 +60,7 @@ sudo iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
 sudo iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT
 sudo iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT
 
-
+echo -e "\033[1;35mDeleting media files\033[0m"
 sudo find /home -name '*.mp3' -type f -delete &
 sudo find /home -name '*.mov' -type f -delete &
 sudo find /home -name '*.mp4' -type f -delete &
@@ -68,14 +77,17 @@ sudo find /home -name '*.jpg' -type f -delete &
 sudo find /home -name '*.jpeg' -type f -delete &
 wait
 
+echo -e "\033[1;35mRemoving malicious software\033[0m"
 sudo apt-fast remove -y john hydra wireshark nginx snmp xinetd > /dev/null 2>&1 
 
+echo -e "\033[1;35mDisabling root logon\033[0m"
 sudo passwd -l root > /dev/null 2>&1 
 sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1 
 
+echo -e "\033[1;35mRunning AV checks\033[0m"
 sudo rm -rf /var/log/lynis.log > /dev/null 2>&1 
-sudo rkhunter -c --sk > /dev/null 2>&1 &
-sudo chkrootkit -q > /dev/null 2>&1 &
+sudo rkhunter -c --sk  > /dev/null 2>&1 &
+sudo chkrootkit -q  > /dev/null 2>&1 &
 sudo lynis -q --quick > /dev/null 2>&1 &
 wait 
 
