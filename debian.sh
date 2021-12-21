@@ -22,7 +22,7 @@ sudo bash -c 'echo -e "deb http://deb.debian.org/debian/ $(lsb_release -cs)-upda
 sudo bash -c 'echo -e "deb-src http://deb.debian.org/debian/ $(lsb_release -cs)-updates main contrib non-free" >> /etc/apt/sources.list'
 
 bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
-
+if [ "$(lsb_release -is)" = "Debian" ]; then echo -e "\033[1;35mUbuntu's Dock has beed added, will appear on reboot\033[0m"; fi
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)"
 
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"  > /dev/null 2>&1 
