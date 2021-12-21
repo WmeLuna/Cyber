@@ -5,7 +5,10 @@ cd ~ && mkdir .themes
 cd ~/.themes 
 
 if [ "$(lsb_release -is)" = "Debian" ]; then 
-    sudo apt-get install -y gnome-shell-extension-dashtodock
+    if [ "$(dpkg-query -W -f='${Status}' gnome-shell-extension-dashtodock 2>/dev/null | grep -c 'ok installed')" = "0" ]; then
+        sudo apt-get install -y gnome-shell-extension-dashtodock
+        gnome-session-quit --no-prompt
+    fi
     gnome-shell-extension-tool -e user-theme@gnome-shell-extensions.gcampax.github.com
     gnome-shell-extension-tool -e dash-to-dock@micxgx.gmail.com
     gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
