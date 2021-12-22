@@ -18,12 +18,12 @@ else
 fi
 
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode DYNAMIC
-curl -LOJ https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic.tar.xz
-tar -xf Nordic.tar.xz
+curl -LOJ https://github.com/EliverLara/Nordic/releases/download/v2.1.0/Nordic-darker.tar.xz
+tar -xf Nordic-darker.tar.xz
 wget -qO- https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/raw/master/install.sh | DESTDIR="$HOME/.icons" sh
-gsettings set org.gnome.desktop.interface gtk-theme Nordic
-gsettings set org.gnome.desktop.wm.preferences theme Nordic
-gsettings set org.gnome.shell.extensions.user-theme name "Nordic"
+gsettings set org.gnome.desktop.interface gtk-theme Nordic-darker
+gsettings set org.gnome.desktop.wm.preferences theme Nordic-darker
+gsettings set org.gnome.shell.extensions.user-theme name "Nordic-darker"
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 if [ "$(lsb_release -is)" = "Debian" ]; then 
