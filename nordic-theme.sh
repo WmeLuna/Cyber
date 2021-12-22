@@ -2,7 +2,7 @@
 sudo apt-get install -y tar gnome-shell gnome-shell-extensions gnome-tweaks git
 
 cd ~ && mkdir .themes 
-cd ~/.themes 
+cd ~/.themes || exit 
 
 if [ "$(lsb_release -is)" = "Debian" ]; then 
     if [ "$(dpkg-query -W -f='${Status}' gnome-shell-extension-dashtodock 2>/dev/null | grep -c 'ok installed')" = "0" ]; then
