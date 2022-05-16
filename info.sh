@@ -12,6 +12,16 @@ echo -e "\033[1;35m Listing all human users\033[0m"
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
 echo " "
+echo -e "\033[1;35m Listing nonempty groups with human users highlighted\033[0m"
+cat /etc/group |grep -v ":$" |sed -e $'s/:.*:/ /' > /tmp/groups
+cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > /tmp/humuser
+for x in `cat /tmp/humuser`
+do
+    sed -i -e "s/$x/\\\033[1;35m&\\\033[0m/" /tmp/groups > /dev/null
+done
+echo -e "$(</tmp/groups)"
+
+echo " "
 echo -e "\033[1;35m Listing actionable test ids from lynis (google them to see what commands to run to fix them) \033[0m" 
 sudo cat /var/log/lynis.log | grep Suggestion | grep -o "test:.*" | cut -f2- -d: | cut -d "]" -f1 |sed s:LYNIS:: | sed s:FILE-6310:: | sort -u | grep "\S"
 
