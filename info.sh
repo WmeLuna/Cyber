@@ -8,6 +8,12 @@ echo -e "\033[1;35m List files in all home dirs\033[0m"
 sudo ls /home/*/*
 
 echo " "
+echo -e "\033[1;35m List all cronjobs\033[0m"
+echo "" > /tmp/cronjobs
+for user in $(cut -f1 -d: /etc/passwd); do echo $user >> /tmp/cronjobs; sudo crontab -u $user -l >> /tmp/cronjobs 2>&1; done
+cat /tmp/cronjobs | sed 's/no crontab for //' | uniq -u |sed 's/#.*//' |sed -r '/^\s*$/d'
+
+echo " "
 echo -e "\033[1;35m Listing all human users\033[0m"
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1
 
