@@ -34,7 +34,7 @@ sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > 
 
 echo -e "\033[1;35mUpgrading Packages\033[0m"
 sudo apt-fast upgrade -y 
-sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1
+#sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)" > /dev/null 2>&1 
 
 echo -e "\033[1;35mTurning on firewall\033[0m" 
