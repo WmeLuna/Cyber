@@ -128,5 +128,6 @@ do
     fi
 done
 
+bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/conduro.sh)"
 bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/info.sh)"
 
