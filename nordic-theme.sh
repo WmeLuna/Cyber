@@ -18,7 +18,7 @@ else
 fi
 
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode DYNAMIC
-curl -LOJ https://github.com/EliverLara/Nordic/releases/latest/download/Nordic-darker.tar.xz
+wget -O Nordic-darker.tar.xz https://github.com/EliverLara/Nordic/releases/latest/download/Nordic-darker.tar.xz
 tar -xf Nordic-darker.tar.xz
 #wget -qO- https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/raw/master/install.sh | DESTDIR="$HOME/.icons" sh
 bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/tela-icons.sh)"
