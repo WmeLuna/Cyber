@@ -87,3 +87,13 @@ wmic UserAccount set PasswordRequired=True
 echo Setting auditing success and failure for all categories
 auditpol /set /category:* /success:enable
 auditpol /set /category:* /failure:enable
+
+net accounts /maxpwage:00
+net accounts /lockoutthreshold:10
+
+echo Firewall
+netsh advfirewall set currentprofile state on
+netsh advfirewall set allprofiles state on
+netsh advfirewall set domainprofile state on
+netsh advfirewall set privateprofile state on
+netsh advfirewall set publicprofile state on
