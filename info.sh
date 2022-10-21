@@ -31,6 +31,10 @@ echo " "
 echo -e "\033[1;35m Listing actionable test ids from lynis (google them to see what commands to run to fix them) \033[0m" 
 sudo cat /var/log/lynis.log | grep Suggestion | grep -o "test:.*" | cut -f2- -d: | cut -d "]" -f1 |sed s:LYNIS:: | sed s:FILE-6310:: | sort -u | grep "\S"
 
+echo " "
+echo -e "\033[1;35m Listing solutions already in lynis's log \033[0m" 
+sudo cat /var/log/lynis.log | grep Suggestion | grep -o "solution:.*" | cut -f2- -d: | grep -v -- '-]' | rev | cut -c2- | rev
+
 if [ -f /var/run/reboot-required ]; then
         echo -e "\033[1;35m A reboot is required please reboot asap\033[0m"
 fi
