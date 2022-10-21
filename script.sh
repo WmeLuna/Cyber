@@ -5,8 +5,6 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER > /dev/
 sudo apt update > /dev/null 2>&1
 sudo apt install -y curl cpp> /dev/null 2>&1
 
-curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
-bash -c "$(cd ~/.mozilla/firefox/*.default; pwd)"
 echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
 
@@ -26,6 +24,10 @@ echo "debconf debconf/priority select critical" | sudo debconf-set-selections
 echo "debconf debconf/frontend select Noninteractive" | sudo debconf-set-selections
 sudo apt-fast install -y software-properties-common sysstat acct members auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > /dev/null 2>&1
+
+echo -e "\033[1;35mReseting and configuring firefox\033[0m"
+apt-fast purge firefox -y && apt-fast install firefox -y
+curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | sed 's/user_pref/pref/' | sed 's/);/, locked);/' | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
 
 echo -e "\033[1;35mUpgrading Packages\033[0m"
 sudo apt-fast upgrade -y 
