@@ -45,19 +45,19 @@ sudo rm -r /usr/local/games* > /dev/null
 
 echo "allow-guest=false" | sudo tee -a /etc/lightdm/lightdm.conf > /dev/null 2>&1 
 
-sudo iptables -F
-sudo iptables -P INPUT DROP
-sudo iptables -P OUTPUT DROP
-sudo iptables -P FORWARD DROP
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A OUTPUT -o lo -j ACCEPT
-sudo iptables -A INPUT -s 127.0.0.0/8 -j DROP
-sudo iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT
-sudo iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
-sudo iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT
-sudo iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT
+#sudo iptables -F
+#sudo iptables -P INPUT DROP
+#sudo iptables -P OUTPUT DROP
+#sudo iptables -P FORWARD DROP
+#sudo iptables -A INPUT -i lo -j ACCEPT
+#sudo iptables -A OUTPUT -o lo -j ACCEPT
+#sudo iptables -A INPUT -s 127.0.0.0/8 -j DROP
+#sudo iptables -A OUTPUT -p tcp -m state --state NEW,ESTABLISHED -j ACCEPT
+#sudo iptables -A OUTPUT -p udp -m state --state NEW,ESTABLISHED -j ACCEPT
+#sudo iptables -A OUTPUT -p icmp -m state --state NEW,ESTABLISHED -j ACCEPT
+#sudo iptables -A INPUT -p tcp -m state --state ESTABLISHED -j ACCEPT
+#sudo iptables -A INPUT -p udp -m state --state ESTABLISHED -j ACCEPT
+#sudo iptables -A INPUT -p icmp -m state --state ESTABLISHED -j ACCEPT
 
 echo -e "\033[1;35mDeleting media files\033[0m"
 sudo find /home -name '*.mp3' -type f -delete &
