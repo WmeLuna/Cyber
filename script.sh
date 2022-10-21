@@ -5,8 +5,8 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER > /dev/
 sudo apt update > /dev/null 2>&1
 sudo apt install -y curl cpp> /dev/null 2>&1
 
-curl -sL https://github.com/yokoffing/Betterfox/raw/master/Securefox.js | cpp -undef -P | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
-
+curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
+bash -c "$(cd ~/.mozilla/firefox/*.default; pwd)"
 echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
 
