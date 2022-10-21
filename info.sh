@@ -25,6 +25,7 @@ for x in `cat /tmp/humuser`
 do
     sed -i -e "s/$x/\\\033[1;35m&\\\033[0m/" /tmp/groups > /dev/null
 done
+echo -e "$(cut -d ' ' --output-delimiter=$'\n    ' -f 1- /tmp/groups)" > /tmp/groups
 echo -e "$(</tmp/groups)"
 
 echo " "
