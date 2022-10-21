@@ -3,12 +3,9 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2
 echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER > /dev/null 2>&1 # disable sudo prompt during the comp
 
 sudo apt update > /dev/null 2>&1
-sudo apt install -y curl> /dev/null 2>&1
+sudo apt install -y curl cpp> /dev/null 2>&1
 
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"browser.contentblocking.category\", strict);' >> user.js"
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"privacy.donottrackheader.enabled\", true);' >> user.js"
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.security.https_only_mode\", true);' >> user.js"
-bash -c "cd ~/.mozilla/firefox/*.default/ && echo 'user_pref(\"dom.disable_open_during_load\", true);' >> user.js"
+curl -sL https://github.com/yokoffing/Betterfox/raw/master/Securefox.js | cpp -undef -P | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
 
 echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
