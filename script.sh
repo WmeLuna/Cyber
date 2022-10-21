@@ -70,10 +70,10 @@ sudo find /home -name '*.flac' -type f -delete &
 sudo find /home -name '*.m4a' -type f -delete &
 sudo find /home -name '*.flv' -type f -delete &
 sudo find /home -name '*.ogg' -type f -delete &
-sudo find /home -name '*.gif' -type f -delete &
-sudo find /home -name '*.png' -type f -delete &
-sudo find /home -name '*.jpg' -type f -delete &
-sudo find /home -name '*.jpeg' -type f -delete &
+#sudo find /home -name '*.gif' -type f -delete &
+#sudo find /home -name '*.png' -type f -delete &
+#sudo find /home -name '*.jpg' -type f -delete &
+#sudo find /home -name '*.jpeg' -type f -delete &
 wait
 
 echo -e "\033[1;35mRemoving malicious software\033[0m"
