@@ -70,7 +70,7 @@ sudo find /home -name '*.flac' -type f -delete &
 sudo find /home -name '*.m4a' -type f -delete &
 sudo find /home -name '*.flv' -type f -delete &
 sudo find /home -name '*.ogg' -type f -delete &
-#sudo find /home -name '*.gif' -type f -delete &
+sudo find /home -name '*.gif' -type f -delete &
 #sudo find /home -name '*.png' -type f -delete &
 #sudo find /home -name '*.jpg' -type f -delete &
 #sudo find /home -name '*.jpeg' -type f -delete &
@@ -94,29 +94,29 @@ wait
 PASS='K!rkL@nd2587'
 sudo cut -d: -f1,3 /etc/passwd | egrep ':[0-9]{4}$' | cut -d: -f1 > users
 sed -i '/root/ d' users
+sed -i "/$USER/ d" users
 
 ##delete users make admin and change pass
 for x in `cat users`
 do
-    read -p "Delete user $x?[y/n]: " ansdel
+    read -p $'Delete user \033[1;35m'$x$'\033[0m?[y/n]: ' ansdel
     if [ $ansdel = y ];
     then
           sudo mv /home/$x /home/del_$x
           sudo sed -i -e "/$x/ s/^#*/#/" /etc/passwd
     else
           ##confirm admin list
-          read -p "Is user $x an admin?[y/n]: " ansadmin
+          read -p $'Is user \033[1;35m'$x$'\033[0m an admin?[y/n]: ' ansadmin
           if [ $ansadmin = y ];
           then
-                sudo usermod -a -G adm $x
-                sudo usermod -a -G sudo $x
+                sudo usermod -a -G adm,sudo $x
           else
                 sudo deluser $x adm
                 sudo deluser $x sudo
           fi
           
           #change pass
-          read -p "Change user's $x password (do not change $USER's password)?[y/n]: " anspass
+          read -p $'Change user\'s \033[1;35m'$x$'\033[0m password?[y/n]: ' anspass
           if [ $anspass = y ];
           then
                 echo -e "$PASS\n$PASS" | sudo passwd $x
