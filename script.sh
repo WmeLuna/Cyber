@@ -85,9 +85,9 @@ sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1
 
 echo -e "\033[1;35mRunning AV checks\033[0m"
 sudo rm -rf /var/log/lynis.log > /dev/null 2>&1 
-sudo rkhunter -c --sk  > /dev/null 2>&1 &
-sudo chkrootkit -q  > /dev/null 2>&1 &
-sudo lynis -q --quick > /dev/null 2>&1 &
+gnome-terminal --tab --title="RKHunter" --wait -e "sudo rkhunter -c --sk"  > /dev/null 2>&1 &
+gnome-terminal --tab --title="CHKRootKit" --wait -e "sudo chkrootkit "  > /dev/null 2>&1 &
+gnome-terminal --tab --title="Lynis" --wait -e "sudo lynis --quick" > /dev/null 2>&1 &
 wait 
 
 PASS='K!rkL@nd2587'
