@@ -39,7 +39,7 @@ auditctl -e 1
 
 echo "LoginGraceTime 2m" >> /etc/ssh/sshd_config
 echo "PermitRootLogin no " >> /etc/ssh/sshd_config
-echo "StrictMode yes" >> /etc/ssh/sshd_config
+echo "StrictModes yes" >> /etc/ssh/sshd_config
 echo "MaxAuthTries 0" >> /etc/ssh/sshd_config
 echo "MaxSessions 0" >> /etc/ssh/sshd_config
 echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
