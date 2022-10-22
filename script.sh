@@ -9,7 +9,8 @@ echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1 
 
 echo -e "\033[1;35mCustomizing GNOME\033[0m"
-bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
+sudo apt-get install -y tar gnome-shell gnome-shell-extensions gnome-tweaks git > /dev/null 2>&1
+gnome-terminal --tab --title="Customizing GNOME" -- bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/nordic-theme.sh)" > /dev/null 2>&1
 
 echo -e "\033[1;35mConfiguring Update Settings\033[0m"
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/apt-smart.sh)"  > /dev/null 2>&1 
