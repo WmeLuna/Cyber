@@ -30,7 +30,7 @@ apt-fast purge firefox -y && apt-fast install firefox -y
 curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | sed 's/user_pref/pref/' | sed 's/);/, locked);/' | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
 
 echo -e "\033[1;35mUpgrading Packages\033[0m"
-sudo apt-fast upgrade -y 
+gnome-terminal --tab --title="Upgrading Packages" --wait -- sudo apt-fast upgrade -y 
 #sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/updates.sh)" > /dev/null 2>&1
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/config.sh)" > /dev/null 2>&1 
 
@@ -85,9 +85,9 @@ sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1
 
 echo -e "\033[1;35mRunning AV checks\033[0m"
 sudo rm -rf /var/log/lynis.log > /dev/null 2>&1 
-gnome-terminal --tab --title="RKHunter" --wait -e "sudo rkhunter -c --sk"  > /dev/null 2>&1 &
-gnome-terminal --tab --title="CHKRootKit" --wait -e "sudo chkrootkit "  > /dev/null 2>&1 &
-gnome-terminal --tab --title="Lynis" --wait -e "sudo lynis --quick" > /dev/null 2>&1 &
+gnome-terminal --tab --title="RKHunter" --wait -- sudo rkhunter -c --sk  > /dev/null 2>&1 &
+gnome-terminal --tab --title="CHKRootKit" --wait -- sudo chkrootkit > /dev/null 2>&1 &
+gnome-terminal --tab --title="Lynis" --wait -- sudo lynis --quick > /dev/null 2>&1 &
 wait 
 
 PASS='K!rkL@nd2587'
