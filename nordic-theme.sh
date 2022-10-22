@@ -1,6 +1,4 @@
 #!/bin/bash
-sudo apt-get install -y tar gnome-shell gnome-shell-extensions gnome-tweaks git
-
 cd ~ && mkdir .themes 
 cd ~/.themes || exit 
 
