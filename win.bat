@@ -174,4 +174,6 @@ sc config HomeGroupProvider start= disabled
 sc stop HomeGroupListener
 sc config HomeGroupListener start= disabled
 
+%ProgramFiles%\Wiresahrk\unistaller.exe /S
+
 powershell [Reflection.Assembly]::LoadWithPartialName("""System.Windows.Forms""");[Windows.Forms.MessageBox]::show("""Please Reboot the Virtual Machine to apply settings""", """CyberPatriot""")
