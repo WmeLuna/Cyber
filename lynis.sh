@@ -5,6 +5,6 @@ apt-fast update
 apt-fast -y install apt-transport-https sysstat acct auditd debsums apt-show-versions lynis
 
 
-sudo echo "Package: lynis
+echo "Package: lynis
 Pin: origin packages.cisofy.com
 Pin-Priority: 600" > /etc/apt/preferences.d/lynis

@@ -1,4 +1,5 @@
 #!/bin/bash
+#wget -qO- https://github.com/WmeLuna/Cyber/raw/main/script.sh | bash
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' > /dev/null 2>&1 #darkmde bc i like my eyes
 echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER > /dev/null 2>&1 # disable sudo prompt during the comp
 
@@ -23,7 +24,7 @@ echo "_MAXCONPERSRV=10" | sudo tee -a /etc/apt-fast.conf>/dev/null 2>&1
 echo -e "\033[1;35mDownloading software\033[0m"
 echo "debconf debconf/priority select critical" | sudo debconf-set-selections
 echo "debconf debconf/frontend select Noninteractive" | sudo debconf-set-selections
-sudo apt-fast install -y software-properties-common sysstat acct members auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
+sudo apt-fast install -y software-properties-common htop sysstat acct members auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > /dev/null 2>&1
 
 echo -e "\033[1;35mReseting and configuring firefox\033[0m"
@@ -71,6 +72,9 @@ sudo find /home -name '*.m4a' -type f -delete &
 sudo find /home -name '*.flv' -type f -delete &
 sudo find /home -name '*.ogg' -type f -delete &
 sudo find /home -name '*.gif' -type f -delete &
+sudo find /home -name '*.tar' -type f -delete &
+sudo find /home -name '*.deb' -type f -delete &
+sudo find /home -name '*.tar.gz' -type f -delete &
 #sudo find /home -name '*.png' -type f -delete &
 #sudo find /home -name '*.jpg' -type f -delete &
 #sudo find /home -name '*.jpeg' -type f -delete &
@@ -86,7 +90,7 @@ sudo usermod -s /usr/sbin/nologin root > /dev/null 2>&1
 
 echo -e "\033[1;35mRunning AV checks\033[0m"
 sudo rm -rf /var/log/lynis.log > /dev/null 2>&1 
-gnome-terminal --tab --title="RKHunter" --wait -- sudo rkhunter -c --sk  > /dev/null 2>&1 &
+gnome-terminal --tab --title="RKHunter" --wait -- sudo rkhunter -c --sk --enable all --disable none > /dev/null 2>&1 &
 gnome-terminal --tab --title="CHKRootKit" --wait -- sudo chkrootkit > /dev/null 2>&1 &
 gnome-terminal --tab --title="Lynis" --wait -- sudo lynis --quick > /dev/null 2>&1 &
 wait 
@@ -116,13 +120,13 @@ do
           fi
           
           #change pass
-          read -p $'Change user\'s \033[1;35m'$x$'\033[0m password?[y/n]: ' anspass
-          if [ $anspass = y ];
-          then
+          #read -p $'Change user\'s \033[1;35m'$x$'\033[0m password?[y/n]: ' anspass
+          #if [ $anspass = y ];
+          #then
                 echo -e "$PASS\n$PASS" | sudo passwd $x
                 sudo chage -M 90 -m 7 -W 15 $x
                 echo -e "Changed password of $x"
-          fi
+          #fi
     fi
 done
 
