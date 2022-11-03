@@ -81,7 +81,7 @@ sudo find /home -name '*.tar.gz' -type f -delete &
 wait
 
 echo -e "\033[1;35mRemoving malicious software\033[0m"
-sudo apt-fast remove -y john* hydra* wireshark* nginx* snmp* xinetd* nmap* deluge* > /dev/null 2>&1 
+sudo apt-fast remove -y john* hydra* wireshark* nginx* snmp* xinetd* nmap* deluge* zenmap* netcat* telnet* pure-ftpd* squid*  > /dev/null 2>&1 
 sudo apt autoremove -y > /dev/null 2>&1 
 
 echo -e "\033[1;35mDisabling root logon\033[0m"
