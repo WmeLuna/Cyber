@@ -27,9 +27,9 @@ echo "debconf debconf/frontend select Noninteractive" | sudo debconf-set-selecti
 sudo apt-fast install -y software-properties-common htop sysstat acct members auditd debsums apt-show-versions ssh ufw unattended-upgrades rkhunter clamav lynis chkrootkit synaptic gufw libpam-cracklib iptables ansible git
 sudo bash -c "$(curl -sL https://github.com/WmeLuna/Cyber/raw/main/lynis.sh)" > /dev/null 2>&1
 
-echo -e "\033[1;35mReseting and configuring firefox\033[0m"
-apt-fast purge firefox -y && apt-fast install firefox -y
-curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | sed 's/user_pref/pref/' | sed 's/);/, locked);/' | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
+#echo -e "\033[1;35mReseting and configuring firefox\033[0m"
+#apt-fast purge firefox -y && apt-fast install firefox -y
+#curl -sL https://github.com/WmeLuna/Cyber/raw/main/user.js | cpp -undef -P | sed 's/user_pref/pref/' | sed 's/);/, locked);/' | grep -v "network.captive-portal-service.enabled" | sudo tee /etc/firefox/syspref.js /etc/firefox/firefox.js /etc/firefox-esr/firefox-esr.js /usr/lib/firefox/mozilla.cfg
 
 echo -e "\033[1;35mUpgrading Packages\033[0m"
 gnome-terminal --tab --title="Upgrading Packages" --wait -- sudo apt-fast upgrade -y 
@@ -103,14 +103,14 @@ sed -i "/$USER/ d" users
 ##delete users make admin and change pass
 for x in `cat users`
 do
-    read -p $'Delete user \033[1;35m'$x$'\033[0m?[y/n]: ' ansdel
+    read -p "Delete user $x ?[y/n]: " ansdel
     if [ $ansdel = y ];
     then
           sudo mv /home/$x /home/del_$x
           sudo sed -i -e "/$x/ s/^#*/#/" /etc/passwd
     else
           ##confirm admin list
-          read -p $'Is user \033[1;35m'$x$'\033[0m an admin?[y/n]: ' ansadmin
+          read -p "Is user $x an admin?[y/n]: " ansadmin
           if [ $ansadmin = y ];
           then
                 sudo usermod -a -G adm,sudo $x
@@ -120,13 +120,13 @@ do
           fi
           
           #change pass
-          #read -p $'Change user\'s \033[1;35m'$x$'\033[0m password?[y/n]: ' anspass
-          #if [ $anspass = y ];
-          #then
+          read -p "Change user\'s $x password?[y/n]: " anspass
+          if [ $anspass = y ];
+          then
                 echo -e "$PASS\n$PASS" | sudo passwd $x
                 sudo chage -M 90 -m 7 -W 15 $x
                 echo -e "Changed password of $x"
-          #fi
+          fi
     fi
 done
 
